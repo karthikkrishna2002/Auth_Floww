@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Match API host to the page host during development to reduce CORS/site issues
-const API_BASE_URL = `${window.location.protocol}//${window.location.hostname}:5000/api`;
+const API_BASE_URL = 'https://auth-floww.onrender.com/';
 
 export const api = axios.create({
   baseURL: API_BASE_URL,
