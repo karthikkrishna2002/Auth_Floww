@@ -1,0 +1,30 @@
+# Node
+**/node_modules/
+**/npm-debug.log*
+**/yarn-debug.log*
+**/pnpm-debug.log*
+**/.cache/
+
+# Builds
+**/dist/
+**/build/
+
+# Environment files
+.env
+.env.*.local
+
+# SQLite databases
+backend/users.db
+**/*.sqlite
+**/*.db
+
+# Lock files (optional for this project)
+**/package-lock.json
+
+# Editor/OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+

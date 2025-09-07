@@ -1,5 +1,6 @@
 import express from 'express';
 import session from 'express-session';
+import SQLiteStoreFactory from 'connect-sqlite3';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import path from 'path';
@@ -11,6 +12,7 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const SQLiteStore = SQLiteStoreFactory(session);
 
 const corsOptions = {
   origin(origin, callback) {
@@ -31,12 +33,17 @@ app.use(cors(corsOptions));
 
 app.use(cookieParser());
 app.use(express.json());
-
+app.set('trust proxy', 1);
+app.set('trust proxy', 1);
 app.use(session({
   name: 'sid',
   secret: process.env.SESSION_SECRET || 'supersecret-session-key',
   resave: false,
   saveUninitialized: false,
+  store: new SQLiteStore({
+    db: 'sessions.sqlite',
+    dir: __dirname,
+  }),
   cookie: {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
